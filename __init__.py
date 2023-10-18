@@ -5,11 +5,10 @@ from .config import Config
 
 __plugin_meta = PluginMetadata(
     name="maimaidx-nonebot",
-    description="",
+    description="移植自Hoshino的国服舞萌DX插件",
     usage="",
     config=Config,
 )
 
-global_config = get_driver().config
-config = Config.parse_obj(global_config)
+config = Config.parse_obj(get_driver().config).maimaidx
 
