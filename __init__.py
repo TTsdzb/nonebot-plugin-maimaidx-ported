@@ -5,11 +5,11 @@ from .types import Config
 
 # 插件信息
 __plugin_meta = PluginMetadata(
-    name="maimaidx-nonebot",
+    name="MaimaiDX Nonebot",
     description="移植自Hoshino的国服舞萌DX插件",
     usage="查询舞萌DX的成绩等数据。",
     type="application",
-    homepage="https://github.com/TTsdzb/maimaidx-nonebot",
+    homepage="https://github.com/TTsdzb/nonebot-plugin-maimaidx-ported",
     config=Config,
 )
 
