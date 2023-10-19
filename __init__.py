@@ -1,6 +1,6 @@
 from nonebot.plugin import PluginMetadata
 
-from .plugin_data import load
+from .plugin_data import load as plugin_data_load
 from .types import Config
 
 # 插件信息
@@ -13,4 +13,4 @@ __plugin_meta = PluginMetadata(
     config=Config,
 )
 
-load()
+plugin_data_load()
