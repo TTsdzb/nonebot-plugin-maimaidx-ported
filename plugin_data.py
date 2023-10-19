@@ -11,12 +11,13 @@ class PluginData(BaseModel):
     存储所有共享的数据。
     """
     config: Optional[ScopedConfig] = None
+    ready: bool = False
 
 
 __data: PluginData = PluginData()
 
 
-def load():
+def load() -> None:
     """插件启动时加载基本数据。"""
     try:
         # 加载插件设置
@@ -24,3 +25,11 @@ def load():
     except ValidationError as e:
         logger.critical(f"未能加载插件配置：{e}")
         logger.critical("本插件将无法工作")
+        return
+    try:
+        __data.config.data_path.mkdir(parents=True, exist_ok=True)
+    except PermissionError as e:
+        logger.critical(f"没有足够的权限，无法创建数据文件夹：{e}")
+        logger.critical("如果您使用Windows，请避免将数据目录设置在C盘；如果您使用Linux，请避免将数据目录设置在家目录之外的地方。")
+        return
+    __data.ready = True

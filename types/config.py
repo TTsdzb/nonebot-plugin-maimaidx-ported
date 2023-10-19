@@ -1,9 +1,10 @@
+from pathlib import Path
 from pydantic import BaseModel, Extra
 
 
 class ScopedConfig(BaseModel, extra=Extra.ignore):
     """插件配置的实际声明。"""
-    data_path: str
+    data_path: Path
 
 
 class Config(BaseModel, extra=Extra.ignore):
