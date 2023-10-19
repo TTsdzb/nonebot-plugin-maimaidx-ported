@@ -1,8 +1,7 @@
-from nonebot import get_driver, logger
 from nonebot.plugin import PluginMetadata
-from pydantic import ValidationError
 
-from .config import Config
+from .plugin_data import load
+from .types import Config
 
 # 插件信息
 __plugin_meta = PluginMetadata(
@@ -14,9 +13,4 @@ __plugin_meta = PluginMetadata(
     config=Config,
 )
 
-try:
-    # 加载插件设置
-    config = Config.parse_obj(get_driver().config).maimaidx
-except ValidationError as e:
-    logger.critical(f"未能加载插件配置：{e}")
-    logger.critical("本插件将无法工作")
+load()
